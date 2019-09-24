@@ -1,6 +1,7 @@
 'use strict'
 
 const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
   entry: {
@@ -25,6 +26,18 @@ module.exports = {
       }] }
     ]
   },
-  plugins: [],
-  mode: 'production'
+  mode: 'development',
+  watch: true,
+  watchOptions: {
+    ignored: /node_modules/, // 默认为空，支持正则匹配
+    aggregateTimeout: 300, // 默认300ms，监听到变化后等300ms再执行
+    poll: 1000 // Check for changes every second 查询间隔时间 1000ms
+  },
+  plugins: [
+    // new webpack.HotModuleReplacementPlugin() // 可以不用加，hot:true后会自动引用
+  ],
+  devServer: {
+    contentBase: './dist',
+    hot: true
+  }
 }
