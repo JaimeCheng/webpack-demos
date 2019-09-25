@@ -10,7 +10,7 @@ import './static/search.less'
 class Search extends React.Component {
   render () {
     return <div className="search-text">
-      Webpack Demo
+      Seacch Demo
       <br />
       <img src={ logo } />
       <img src={ avatar } />
