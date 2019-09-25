@@ -1,7 +1,8 @@
 'use strict'
 
 const path = require('path')
-const webpack = require('webpack')
+// const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -34,7 +35,19 @@ module.exports = {
     poll: 1000 // Check for changes every second 查询间隔时间 1000ms
   },
   plugins: [
-    // new webpack.HotModuleReplacementPlugin() // 可以不用加，hot:true后会自动引用
+    // new webpack.HotModuleReplacementPlugin(), // 可以不用加，hot:true后会自动引用
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src/index.html'),
+      filename: 'index.html',
+      chunks: ['index'],
+      inject: true
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src/search.html'),
+      filename: 'search.html',
+      chunks: ['search'],
+      inject: true
+    })
   ],
   devServer: {
     contentBase: './dist',
