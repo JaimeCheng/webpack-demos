@@ -17,7 +17,7 @@ module.exports = {
     rules: [
       { test: /\.js$/, use: 'babel-loader' },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
-      { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'] },
+      { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'] }, // 从右往左
       // { test: /\.(png|jpg|gif|jpeg)$/, use: 'file-loader' },
       { test: /\.(png|jpg|gif|jpeg)$/, use: [{
         loader: 'url-loader',
