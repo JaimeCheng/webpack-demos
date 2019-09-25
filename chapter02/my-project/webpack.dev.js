@@ -27,7 +27,7 @@ module.exports = {
     ]
   },
   mode: 'development',
-  watch: true,
+  watch: false,
   watchOptions: {
     ignored: /node_modules/, // 默认为空，支持正则匹配
     aggregateTimeout: 300, // 默认300ms，监听到变化后等300ms再执行
