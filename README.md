@@ -1,4 +1,4 @@
-## Webpack Note
+## 基础篇
 
 ### 核心概念
 - **Entry** 
