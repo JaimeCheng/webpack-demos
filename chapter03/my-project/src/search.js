@@ -12,8 +12,8 @@ class Search extends React.Component {
     return <div className="search-text">
       Seacch Demo
       <br />
-      <img src={ logo } />
-      <img src={ avatar } />
+      <img className="search-logo" src={ logo } />
+      <img className="search-head" src={ avatar } />
     </div>
   }
 }

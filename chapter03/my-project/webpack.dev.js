@@ -17,7 +17,14 @@ module.exports = {
     rules: [
       { test: /\.js$/, use: 'babel-loader' },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
-      { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'] },
+      { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader', 
+        {
+          loader: 'px2rem-loader',
+          options: {
+            remUnit: 75,
+            remPrecision: 3
+          }
+        }] },
       // { test: /\.(png|jpg|gif|jpeg)$/, use: 'file-loader' },
       { test: /\.(png|jpg|gif|jpeg)$/, use: [{
         loader: 'url-loader',
