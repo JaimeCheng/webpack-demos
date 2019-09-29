@@ -28,12 +28,6 @@ module.exports = {
         //     }) 
         //   ]
         // } // 或者直接根目录写postcss.config.js
-      }, {
-        loader: 'px2rem-loader',
-        options: {
-          remUnit: 75,
-          remPrecision: 3
-        }
       }] },
       // { test: /\.(png|jpg|gif|jpeg)$/, use: 'file-loader' },
       { test: /\.(png|jpg|gif|jpeg)$/, use: [{
