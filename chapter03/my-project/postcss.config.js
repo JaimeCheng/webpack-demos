@@ -4,7 +4,7 @@ module.exports = {
     'autoprefixer': {},
     'postcss-px2rem-exclude': {
       'remUnit': 75,
-      'exclude': 'search.less' // ignore
+      'exclude': 'search1.less|style1.css' // ignore
     }
   }
 }

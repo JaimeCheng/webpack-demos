@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom'
 import logo from './static/logo.png'
 import avatar from './static/avatar.png'
 import './static/search.less'
+import './static/style.css'
 
 class Search extends React.Component {
   render () {
