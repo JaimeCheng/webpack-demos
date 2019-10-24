@@ -93,5 +93,5 @@ module.exports = {
     contentBase: './dist',
     hot: true
   },
-  devtool: 'eval-source-map'
+  devtool: 'cheap-source-map'
 }
