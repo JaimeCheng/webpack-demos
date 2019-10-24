@@ -1,7 +1,7 @@
 {
   "name": "my-project",
   "version": "1.0.0",
-  "description": "chapter02",
+  "description": "chapter03",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
