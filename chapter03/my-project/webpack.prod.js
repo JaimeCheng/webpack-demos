@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin").default
 
 module.exports = {
   entry: {
@@ -18,8 +19,17 @@ module.exports = {
   module: {
     rules: [
       { test: /\.js$/, use: 'babel-loader' },
-      { test: /\.css$/, use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'] },
-      { test: /\.less$/, use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader', {
+      {
+        test: /\.css$/, use: [{
+          loader: 'style-loader',
+          options: {
+            injectType: 'styleTag' // 这个和MiniCssExtractPlugin冲突作用 css-loader 将css转换成commonjs对象，然后css代码就在js里面了。style-loader的作用是在js执行时，动态的创建style标签，然后将 css-loader 转换的样式插入到这个style标签里去的。
+            // injectType: 'singletonStyleTag' // https://www.npmjs.com/package/style-loader
+          }
+        },
+        'css-loader', 'postcss-loader'] },
+      {
+        test: /\.less$/, use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader', {
         loader: 'postcss-loader',
         // options: {
         //   plugins: () => [
@@ -76,6 +86,7 @@ module.exports = {
         removeComments: false
       }
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    // new HTMLInlineCSSWebpackPlugin() // 和style-loader同作用内联css，区别在于打包后直接就把css插入到了<head><style></head>
   ]
 }
