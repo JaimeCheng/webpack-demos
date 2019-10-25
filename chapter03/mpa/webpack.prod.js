@@ -97,13 +97,23 @@ module.exports = {
     // new HTMLInlineCSSWebpackPlugin() // 和style-loader同作用内联css，区别在于打包后直接就把css插入到了<head><style></head>
   ].concat(htmlWebpackPlugins), // htmlWebpackPlugins要在HtmlWebpackExternalsPlugin之前
   optimization: {
-    splitChunks: {
+    // splitChunks: {
+    //   cacheGroups: {
+    //     commons: {
+    //       test: /(react|react-dom)/,
+    //       name: 'vendors',
+    //       chunks: 'all'
+    //     }
+    //   }
+    // }, // 只提取基础库
+    splitChunks: { // 所有公共文件 基础库 公共脚本
+      minSize: 0, // bytes
       cacheGroups: {
         commons: {
-          test: /(react|react-dom)/,
-          name: 'vendors',
-          chunks: 'all'
-        }
+          name: 'commons',
+          chunks: 'all',
+          minChunks: 2
+        } 
       }
     }
   }

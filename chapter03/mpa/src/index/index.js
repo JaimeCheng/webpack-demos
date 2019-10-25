@@ -2,6 +2,7 @@ import { helloWorld } from './helloworld'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import '../../common'
 document.write(helloWorld())
 
 import '../static/style.css'

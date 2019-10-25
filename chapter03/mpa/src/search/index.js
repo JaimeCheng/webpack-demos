@@ -3,6 +3,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import '../../common'
 import logo from '../static/logo.png'
 import avatar from '../static/avatar.png'
 import '../static/search.less'
