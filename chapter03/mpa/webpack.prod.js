@@ -24,7 +24,7 @@ const setMPA = () => {
     htmlWebpackPlugins.push(new HtmlWebpackPlugin({
       template: path.join(__dirname, `src/${pageName}/index.html`),
       filename: `${pageName}.html`,
-      chunks: [pageName],
+      chunks: ['vendors', pageName],
       inject: true,
       minify: {
         html5: true,
@@ -95,18 +95,16 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     // new HTMLInlineCSSWebpackPlugin() // 和style-loader同作用内联css，区别在于打包后直接就把css插入到了<head><style></head>
-  ].concat(htmlWebpackPlugins, new HtmlWebpackExternalsPlugin({
-    externals: [
-      {
-        module: 'react',
-        entry: 'https://11.url.cn/now/lib/15.1.0/react-with-addons.min.js',
-        global: 'React',
-      },
-      {
-        module: 'react-dom',
-        entry: 'https://11.url.cn/now/lib/15.1.0/react-dom.min.js',
-        global: 'ReactDOM',
+  ].concat(htmlWebpackPlugins), // htmlWebpackPlugins要在HtmlWebpackExternalsPlugin之前
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /(react|react-dom)/,
+          name: 'vendors',
+          chunks: 'all'
+        }
       }
-    ]
-  })) // htmlWebpackPlugins要在HtmlWebpackExternalsPlugin之前
+    }
+  }
 }
