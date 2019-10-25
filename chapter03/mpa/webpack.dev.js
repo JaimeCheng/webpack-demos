@@ -4,6 +4,7 @@ const glob = require('glob')
 const path = require('path')
 // const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 
 const setMPA = () => {
   const entry = {}
@@ -88,7 +89,20 @@ module.exports = {
     //   chunks: ['search'], // 和entry的key对应
     //   inject: true
     // })
-  ].concat(htmlWebpackPlugins),
+  ].concat(htmlWebpackPlugins, new HtmlWebpackExternalsPlugin({
+    externals: [
+      {
+        module: 'react',
+        entry: 'https://11.url.cn/now/lib/15.1.0/react-with-addons.min.js',
+        global: 'React',
+      },
+      {
+        module: 'react-dom',
+        entry: 'https://11.url.cn/now/lib/15.1.0/react-dom.min.js',
+        global: 'ReactDOM',
+      }
+    ]
+  })),
   devServer: {
     contentBase: './dist',
     hot: true

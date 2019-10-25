@@ -7,6 +7,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin").default
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 
 const setMPA = () => {
   const entry = {}
@@ -94,5 +95,18 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     // new HTMLInlineCSSWebpackPlugin() // 和style-loader同作用内联css，区别在于打包后直接就把css插入到了<head><style></head>
-  ].concat(htmlWebpackPlugins)
+  ].concat(htmlWebpackPlugins, new HtmlWebpackExternalsPlugin({
+    externals: [
+      {
+        module: 'react',
+        entry: 'https://11.url.cn/now/lib/15.1.0/react-with-addons.min.js',
+        global: 'React',
+      },
+      {
+        module: 'react-dom',
+        entry: 'https://11.url.cn/now/lib/15.1.0/react-dom.min.js',
+        global: 'ReactDOM',
+      }
+    ]
+  })) // htmlWebpackPlugins要在HtmlWebpackExternalsPlugin之前
 }
