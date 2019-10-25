@@ -84,7 +84,7 @@ module.exports = {
       }] }
     ]
   },
-  mode: 'production',
+  mode: 'production', // none：关闭tree-shaking prod默认开启
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name]_[contenthash:8].css'
