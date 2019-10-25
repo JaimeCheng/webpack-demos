@@ -30,3 +30,20 @@
 - **JS**
 - **CSS**
 
+### 静态资源内联
+- **HTML**
+- **JS**
+- **CSS**
+
+### 多页面打包通用方案
+- **glob**
+
+### 提取公共资源
+- 基础库
+- 公共脚本
+
+### Tree-Shaking
+- **webpack4 prod 默认开启**
+
+### scope hoisting
+- **webpack4 prod 默认开启**
