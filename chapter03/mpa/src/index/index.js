@@ -1,24 +1,27 @@
-import { helloWorld } from './helloworld'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import helloWorld from './helloworld';
+import common from '../../common';
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-import '../../common'
-document.write(helloWorld())
+import '../static/style.css';
+import '../static/index.css';
 
-import '../static/style.css'
-import '../static/index.css'
+document.write(helloWorld());
 
 class Index extends React.Component {
-  render() {
+  render () {
     // a = 1 // 演示source-map
-    return <div className="search-head">
+    return (
+      <div className="search-head">
+        <span>{common()}</span>
       home
-      <br />
-    </div>
+        <br />
+      </div>
+    );
   }
 }
 
 ReactDOM.render(
   <Index />,
-  document.getElementById('root')
-)
+  document.getElementById('root'),
+);
