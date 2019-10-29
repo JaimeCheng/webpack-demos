@@ -12,6 +12,8 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
 const smp = new SpeedMeasurePlugin()
 
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+
 const setMPA = () => {
   const entry = {}
   const htmlWebpackPlugins = []
@@ -97,7 +99,8 @@ module.exports = smp.wrap({
       cssProcessor: require('cssnano')
     }),
     new CleanWebpackPlugin(),
-    new FriendlyErrorsWebpackPlugin()
+    new FriendlyErrorsWebpackPlugin(),
+    new BundleAnalyzerPlugin()
     // new HTMLInlineCSSWebpackPlugin() // 和style-loader同作用内联css，区别在于打包后直接就把css插入到了<head><style></head>
   ].concat(htmlWebpackPlugins), // htmlWebpackPlugins要在HtmlWebpackExternalsPlugin之前
   optimization: {
