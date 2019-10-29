@@ -58,7 +58,12 @@ module.exports = smp.wrap({
   },
   module: {
     rules: [
-      { test: /\.js$/, use: 'babel-loader' },
+      { test: /\.js$/, use: [{
+        loader: 'thread-loader',
+        options: {
+          worker: 3
+        }
+      },'babel-loader'] },
       {
         test: /\.css$/, use: [{
           loader: 'style-loader',
@@ -100,7 +105,7 @@ module.exports = smp.wrap({
     }),
     new CleanWebpackPlugin(),
     new FriendlyErrorsWebpackPlugin(),
-    new BundleAnalyzerPlugin()
+    // new BundleAnalyzerPlugin()
     // new HTMLInlineCSSWebpackPlugin() // 和style-loader同作用内联css，区别在于打包后直接就把css插入到了<head><style></head>
   ].concat(htmlWebpackPlugins), // htmlWebpackPlugins要在HtmlWebpackExternalsPlugin之前
   optimization: {
