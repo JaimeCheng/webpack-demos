@@ -5,6 +5,7 @@ const path = require('path')
 // const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 const setMPA = () => {
   const entry = {}
@@ -89,6 +90,7 @@ module.exports = {
     //   chunks: ['search'], // 和entry的key对应
     //   inject: true
     // })
+    new FriendlyErrorsWebpackPlugin()
   ].concat(htmlWebpackPlugins, new HtmlWebpackExternalsPlugin({
     externals: [
       {
@@ -105,7 +107,8 @@ module.exports = {
   })),
   devServer: {
     contentBase: './dist',
-    hot: true
+    hot: true,
+    stats: 'errors-only'
   },
   devtool: 'cheap-source-map'
 }
