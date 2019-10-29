@@ -47,3 +47,11 @@
 
 ### scope hoisting
 - **webpack4 prod 默认开启**
+
+### 代码分割
+- **动态 import**
+
+### 代码规范
+- **ESLint**
+
+### 打包组件/基础库
