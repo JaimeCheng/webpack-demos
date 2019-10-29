@@ -13,9 +13,10 @@
   "author": "JaimeCheng <403693553@qq.com>",
   "license": "ISC",
   "dependencies": {
+    "large-number": "^1.0.1",
+    "lib-flexible": "^0.3.2",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "lib-flexible": "^0.3.2"
+    "react-dom": "^16.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
