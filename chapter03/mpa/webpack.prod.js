@@ -13,6 +13,7 @@ const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
 const smp = new SpeedMeasurePlugin()
 
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const TerserPlugin = require('terser-webpack-plugin')
 
 const setMPA = () => {
   const entry = {}
@@ -128,6 +129,13 @@ module.exports = smp.wrap({
         } 
       }
     }
+  },
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        parallel: true
+      })
+    ]
   },
   stats: 'errors-only'
 })
