@@ -86,3 +86,34 @@
 - **tree shaking：css/js**
 - **图片压缩**
 - **动态 Polyfill**
+
+
+## 原理篇
+
+### 启动过程
+- **入口文件**
+- **cli**
+- **yargs**
+- **args**
+
+### Tapable
+- **hooks**
+- **compiler**
+
+### 流程
+[![](https://s2.ax1x.com/2019/10/30/K4Kie1.md.png)](https://imgchr.com/i/K4Kie1)
+
+### 模块化：增强代码可读性和维护性
+- **ES module**: `import largeNumber from 'large-number'; largeNumber.add('999', '1');`
+- **CommonJS**: `const largeNumber = require('large-number'); largeNumber.add('999', '1');`
+- **AMD**: `require(['large-number'], function (large-number) { largeNumber.add('999', '1'); });`
+
+### AST
+- **抽象语法树(Abstract Syntax Tree)**
+- **[demo](https://esprima.org/demo/parse.html)**
+
+### 打包模块机制
+- **打包出来的是一个 IIFE (匿名闭包)**
+- **modules 是一个数组，每一项是一个模块初始化函数**
+- **__webpack_require 用来加载模块，返回 module.exports**
+- **通过 WEBPACK_REQUIRE_METHOD(0) 启动程序**
