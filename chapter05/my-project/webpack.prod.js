@@ -18,6 +18,11 @@ const TerserPlugin = require('terser-webpack-plugin')
 
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 
+const PATHS = {
+  src: path.join(__dirname, 'src')
+}
+const PurgecssPlugin = require('purgecss-webpack-plugin')
+
 const setMPA = () => {
   const entry = {}
   const htmlWebpackPlugins = []
@@ -117,7 +122,10 @@ module.exports = smp.wrap({
       context: path.join(__dirname, 'build/library'),
       manifest: require('./build/library/library.json')
     }),
-    new HardSourceWebpackPlugin()
+    new HardSourceWebpackPlugin(),
+    new PurgecssPlugin({
+      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
+    })
     // new BundleAnalyzerPlugin() // 体积分析
     // new HTMLInlineCSSWebpackPlugin() // 和style-loader同作用内联css，区别在于打包后直接就把css插入到了<head><style></head>
   ].concat(htmlWebpackPlugins), // htmlWebpackPlugins要在HtmlWebpackExternalsPlugin之前
