@@ -8,7 +8,8 @@
     "build": "webpack --config webpack.prod.js",
     "watch": "webpack --watch",
     "dev": "webpack-dev-server --config webpack.dev.js --open",
-    "lint": "eslint --fix --ext .js,.vue src"
+    "lint": "eslint --fix --ext .js,.vue src",
+    "dll": "webpack --config webpack.dll.js"
   },
   "author": "JaimeCheng <403693553@qq.com>",
   "license": "ISC",

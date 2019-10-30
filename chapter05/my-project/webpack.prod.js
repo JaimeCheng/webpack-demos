@@ -2,6 +2,7 @@
 
 const glob = require('glob')
 const path = require('path')
+const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -106,7 +107,11 @@ module.exports = smp.wrap({
     }),
     new CleanWebpackPlugin(),
     new FriendlyErrorsWebpackPlugin(),
-    // new BundleAnalyzerPlugin()
+    new webpack.DllReferencePlugin({
+      context: path.join(__dirname, 'build/library'),
+      manifest: require('./build/library/library.json')
+    })
+    // new BundleAnalyzerPlugin() // 体积分析
     // new HTMLInlineCSSWebpackPlugin() // 和style-loader同作用内联css，区别在于打包后直接就把css插入到了<head><style></head>
   ].concat(htmlWebpackPlugins), // htmlWebpackPlugins要在HtmlWebpackExternalsPlugin之前
   optimization: {
@@ -137,5 +142,5 @@ module.exports = smp.wrap({
       })
     ]
   },
-  stats: 'errors-only'
+  // stats: 'errors-only'
 })
