@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import largeNumber from 'large-number';
 import helloWorld from './helloworld';
 import common from '../../common';
+import bg from '../static/unsplash.jpg';
 
 import '../static/style.css';
 import '../static/index.css';
@@ -18,6 +19,7 @@ class Index extends React.Component {
         <span>{common()}</span>
       home
         <br />
+        <img src={bg} alt="bg" />
         <br />
         { addRes }
       </div>

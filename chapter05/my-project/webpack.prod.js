@@ -97,14 +97,20 @@ module.exports = smp.wrap({
         //   ]
         // } // 或者直接根目录写postcss.config.js
       }] },
-      // { test: /\.(png|jpg|gif|jpeg)$/, use: 'file-loader' },
-      { test: /\.(png|jpg|gif|jpeg)$/, use: [{
-        loader: 'url-loader',
-        options: {
-          limit: 10240,
-          name: '[name]_[hash:8].[ext]'
-        } // 小于10k的直接转换成base64，urk-loader基于filr-loader
-      }] }
+      {
+        // test: /\.(png|jpg|gif|jpeg)$/, use: [
+        //   'file-loader',
+        //   'image-webpack-loader'
+        // ]},
+        test: /\.(png|jpg|gif|jpeg)$/, 
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 10240,
+            name: '[name]_[hash:8].[ext]'
+          } // 小于10k的直接转换成base64，urk-loader基于filr-loader
+        }] 
+      }
     ]
   },
   mode: 'production', // none：关闭tree-shaking prod默认开启
@@ -124,7 +130,7 @@ module.exports = smp.wrap({
     }),
     new HardSourceWebpackPlugin(),
     new PurgecssPlugin({
-      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
+      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
     })
     // new BundleAnalyzerPlugin() // 体积分析
     // new HTMLInlineCSSWebpackPlugin() // 和style-loader同作用内联css，区别在于打包后直接就把css插入到了<head><style></head>
