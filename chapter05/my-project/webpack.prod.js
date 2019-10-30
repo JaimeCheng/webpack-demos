@@ -62,12 +62,16 @@ module.exports = smp.wrap({
   },
   module: {
     rules: [
-      { test: /\.js$/, use: [{
-        loader: 'thread-loader',
-        options: {
-          worker: 3
-        }
-      },'babel-loader?cacheDirectory=true'] },
+      { 
+        test: /\.js$/, 
+        include: path.resolve('src'),
+        use: [{
+          loader: 'thread-loader',
+          options: {
+            worker: 3
+          }
+        },'babel-loader?cacheDirectory=true'] 
+      },
       {
         test: /\.css$/, use: [{
           loader: 'style-loader',
@@ -145,6 +149,14 @@ module.exports = smp.wrap({
         cache: true
       })
     ]
+  },
+  resolve: {
+    alias: {
+      'react': path.resolve(__dirname, './node_modules/react/umd/react.production.min.js'),
+      'react-dom': path.resolve(__dirname, './node_modules/react-dom/umd/react-dom.production.min.js')
+    },
+    extensions: ['.js'],
+    mainFields: ['main']
   },
   stats: 'errors-only'
 })
