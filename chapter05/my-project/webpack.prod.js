@@ -16,6 +16,8 @@ const smp = new SpeedMeasurePlugin()
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const TerserPlugin = require('terser-webpack-plugin')
 
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
+
 const setMPA = () => {
   const entry = {}
   const htmlWebpackPlugins = []
@@ -65,7 +67,7 @@ module.exports = smp.wrap({
         options: {
           worker: 3
         }
-      },'babel-loader'] },
+      },'babel-loader?cacheDirectory=true'] },
       {
         test: /\.css$/, use: [{
           loader: 'style-loader',
@@ -110,7 +112,8 @@ module.exports = smp.wrap({
     new webpack.DllReferencePlugin({
       context: path.join(__dirname, 'build/library'),
       manifest: require('./build/library/library.json')
-    })
+    }),
+    new HardSourceWebpackPlugin()
     // new BundleAnalyzerPlugin() // 体积分析
     // new HTMLInlineCSSWebpackPlugin() // 和style-loader同作用内联css，区别在于打包后直接就把css插入到了<head><style></head>
   ].concat(htmlWebpackPlugins), // htmlWebpackPlugins要在HtmlWebpackExternalsPlugin之前
@@ -138,9 +141,10 @@ module.exports = smp.wrap({
   optimization: {
     minimizer: [
       new TerserPlugin({
-        parallel: true
+        parallel: true,
+        cache: true
       })
     ]
   },
-  // stats: 'errors-only'
+  stats: 'errors-only'
 })
