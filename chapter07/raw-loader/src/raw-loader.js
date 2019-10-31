@@ -6,6 +6,8 @@ module.exports = function (source) {
   const  { name } = loaderUtils.getOptions(this);
   console.log('name:', name);
 
+  this.cacheable(false);
+
   const json = JSON.stringify(source)
     .replace('foo', 'jaime-')
     .replace(/\u2028/g, '\\u2028')
