@@ -1,6 +1,7 @@
 const fs = require('fs');
 const babylon = require('babylon');
 const traverse = require('babel-traverse').default;
+const { transformFromAst } = require('babel-core');
 
 module.exports = {
   getAST: (path) => {
@@ -17,5 +18,11 @@ module.exports = {
       }
     })
     return dependencies;
+  },
+  transform: (ast) => {
+    const { code } = transformFromAst(ast, null, {
+      presets: ['env']
+    })
+    return code;
   }
 }
