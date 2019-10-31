@@ -117,3 +117,29 @@
 - **modules 是一个数组，每一项是一个模块初始化函数**
 - **__webpack_require 用来加载模块，返回 module.exports**
 - **通过 WEBPACK_REQUIRE_METHOD(0) 启动程序**
+
+### 实现简易webpack
+- **ES6 语法转换成 ES5 的语法**
+  - 通过 babylon 生成AST
+  - ·通过 babel-core 将AST重新生成源码
+- **可以分析模块之间的依赖关系**
+  - 通过 babel-traverse 的 ImportDeclaration 方法获取依赖属性
+- **生成的 JS 文件可以在浏览器中运行**
+
+### Loader 
+- **多 Loader 时的执行顺序**
+- **loader-runner**
+- **loader-runner 调试 loader**
+- **参数获取**
+- **异常处理**
+- **异步处理**
+- **使用缓存**
+- **文件输出**
+
+### Plugin
+- **运行环境**
+- **基本结构**
+- **使用**
+- **传递参数**
+- **错误处理**
+- **文件写入**
