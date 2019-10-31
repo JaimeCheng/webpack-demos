@@ -1,4 +1,6 @@
 const loaderUtils = require('loader-utils');
+const path = require('path');
+const fs = require('fs');
 
 module.exports = function (source) {
   const  { name } = loaderUtils.getOptions(this);
@@ -13,5 +15,14 @@ module.exports = function (source) {
   // this.callback(new Error('Error'), json); // sync loader 异常处理 方法2
   
   // return `export default ${ json }`; // sync loader 返回值 方式1
-  this.callback(null, json, 1, 3); // sync loader 返回值 方式2 可返回多个值
+  // this.callback(null, json, 1, 3); // sync loader 返回值 方式2 可返回多个值
+
+  // async
+  const callback = this.async();
+  fs.readFile(path.join(__dirname, './async.txt'), 'utf-8', (err, data) => {
+    if (err) {
+      callback(err, '');
+    }
+    callback(null, data);
+  })
 }
